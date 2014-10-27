@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Chip" />
+      <xsd:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_GetLessons_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLessons" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetLessons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLessonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRooms" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjects" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSubjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSchedules_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchedules" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSchedules_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchedulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchedule" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetTeachers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTeachers" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetTeachers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTeachersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroups" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddGroup" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddTeacher_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTeacher" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddTeacher_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTeacherResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubject" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddSubject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddLesson_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLesson" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddLesson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLessonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddConcreteLesson_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddConcreteLesson" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddConcreteLesson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddConcreteLessonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSchedule" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroup" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteTeacher_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTeacher" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteTeacher_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTeacherResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSubject" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteSubject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSubjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSchedule" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteLesson_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLesson" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteLesson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLessonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteConcreteLesson_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConcreteLesson" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteConcreteLesson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConcreteLessonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoomResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="GetLessons">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetLessons" message="tns:IService_GetLessons_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetLessonsResponse" message="tns:IService_GetLessons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRooms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetRooms" message="tns:IService_GetRooms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetRoomsResponse" message="tns:IService_GetRooms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetSubjects" message="tns:IService_GetSubjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetSubjectsResponse" message="tns:IService_GetSubjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedules">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetSchedules" message="tns:IService_GetSchedules_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetSchedulesResponse" message="tns:IService_GetSchedules_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetSchedule" message="tns:IService_GetSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetScheduleResponse" message="tns:IService_GetSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeachers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetTeachers" message="tns:IService_GetTeachers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetTeachersResponse" message="tns:IService_GetTeachers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetGroups" message="tns:IService_GetGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetGroupsResponse" message="tns:IService_GetGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddGroup" message="tns:IService_AddGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddGroupResponse" message="tns:IService_AddGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTeacher">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddTeacher" message="tns:IService_AddTeacher_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddTeacherResponse" message="tns:IService_AddTeacher_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddSubject" message="tns:IService_AddSubject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddSubjectResponse" message="tns:IService_AddSubject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLesson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddLesson" message="tns:IService_AddLesson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddLessonResponse" message="tns:IService_AddLesson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddConcreteLesson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddConcreteLesson" message="tns:IService_AddConcreteLesson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddConcreteLessonResponse" message="tns:IService_AddConcreteLesson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddRoom" message="tns:IService_AddRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddRoomResponse" message="tns:IService_AddRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddSchedule" message="tns:IService_AddSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddScheduleResponse" message="tns:IService_AddSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteGroup" message="tns:IService_DeleteGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteGroupResponse" message="tns:IService_DeleteGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTeacher">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteTeacher" message="tns:IService_DeleteTeacher_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteTeacherResponse" message="tns:IService_DeleteTeacher_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteSubject" message="tns:IService_DeleteSubject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteSubjectResponse" message="tns:IService_DeleteSubject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteSchedule" message="tns:IService_DeleteSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteScheduleResponse" message="tns:IService_DeleteSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLesson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteLesson" message="tns:IService_DeleteLesson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteLessonResponse" message="tns:IService_DeleteLesson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConcreteLesson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteConcreteLesson" message="tns:IService_DeleteConcreteLesson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteConcreteLessonResponse" message="tns:IService_DeleteConcreteLesson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteRoom" message="tns:IService_DeleteRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteRoomResponse" message="tns:IService_DeleteRoom_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLessons">
+      <soap:operation soapAction="http://tempuri.org/IService/GetLessons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRooms">
+      <soap:operation soapAction="http://tempuri.org/IService/GetRooms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <soap:operation soapAction="http://tempuri.org/IService/GetSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedules">
+      <soap:operation soapAction="http://tempuri.org/IService/GetSchedules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <soap:operation soapAction="http://tempuri.org/IService/GetSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeachers">
+      <soap:operation soapAction="http://tempuri.org/IService/GetTeachers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <soap:operation soapAction="http://tempuri.org/IService/GetGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddGroup">
+      <soap:operation soapAction="http://tempuri.org/IService/AddGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTeacher">
+      <soap:operation soapAction="http://tempuri.org/IService/AddTeacher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSubject">
+      <soap:operation soapAction="http://tempuri.org/IService/AddSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLesson">
+      <soap:operation soapAction="http://tempuri.org/IService/AddLesson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddConcreteLesson">
+      <soap:operation soapAction="http://tempuri.org/IService/AddConcreteLesson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <soap:operation soapAction="http://tempuri.org/IService/AddRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSchedule">
+      <soap:operation soapAction="http://tempuri.org/IService/AddSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroup">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTeacher">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteTeacher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSubject">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSchedule">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLesson">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteLesson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConcreteLesson">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteConcreteLesson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <soap:operation soapAction="http://tempuri.org/IService/DeleteRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost:64279/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

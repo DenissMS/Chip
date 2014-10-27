@@ -1,0 +1,14 @@
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.csprojResolveAssemblyReference.cache
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.ClientForm.resources
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.Properties.Resources.resources
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.ScheduleEditForm.resources
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.csproj.GenerateResource.Cache
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\ChipClient.exe.config
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\ChipClient.exe
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\ChipClient.pdb
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.exe
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\obj\Debug\ChipClient.pdb
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\EntityFramework.dll
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\EntityFramework.xml
+C:\Users\Kerat\Documents\Projects\Chip\ChipClient\bin\Debug\EntityFramework.SqlServer.xml
