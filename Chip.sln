@@ -6,6 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chip", "Chip\Chip.csproj", "{D67C55D0-7203-4B40-98B7-4322E8EC4551}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChipClient", "ChipClient\ChipClient.csproj", "{D8DF52DA-FA6B-4331-BBFD-2CFE397988FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D67C55D0-7203-4B40-98B7-4322E8EC4551} = {D67C55D0-7203-4B40-98B7-4322E8EC4551}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChipWebClient", "ChipWebClient\ChipWebClient.csproj", "{C82CAE4C-CD09-4870-984C-64B6CB3EECC7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D67C55D0-7203-4B40-98B7-4322E8EC4551} = {D67C55D0-7203-4B40-98B7-4322E8EC4551}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{D8DF52DA-FA6B-4331-BBFD-2CFE397988FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8DF52DA-FA6B-4331-BBFD-2CFE397988FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8DF52DA-FA6B-4331-BBFD-2CFE397988FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C82CAE4C-CD09-4870-984C-64B6CB3EECC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C82CAE4C-CD09-4870-984C-64B6CB3EECC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C82CAE4C-CD09-4870-984C-64B6CB3EECC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C82CAE4C-CD09-4870-984C-64B6CB3EECC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

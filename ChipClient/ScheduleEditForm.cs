@@ -14,7 +14,7 @@ namespace ChipClient
         private readonly ServiceClient _client;
         private readonly DayOfWeek _dayOfWeek;
         private readonly Group _group;
-        private readonly List<ConcreteLesson> _lessons = new List<ConcreteLesson>();
+        private readonly List<ServiceReference.ConcreteLesson> _lessons = new List<ServiceReference.ConcreteLesson>();
 
         public ScheduleEditForm(Group group, DayOfWeek dayOfWeek, ServiceClient client)
         {
@@ -45,7 +45,7 @@ namespace ChipClient
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            _client.AddSchedule(_group, _lessons.ToArray(), _dayOfWeek);
+            _client.AddSchedule(_group.Id, _lessons.ToArray(), _dayOfWeek);
             Close();
         }
 
@@ -61,12 +61,12 @@ namespace ChipClient
             var teacher = (Teacher) cmbTeacher.SelectedItem;
             var room = (Room) cmbRoom.SelectedItem;
 
-            var concreteLesson = new ConcreteLesson
-            {
-                Subject = subject,
-                Lesson = lesson,
-                Teacher = teacher,
-                Room = room
+            var concreteLesson = new ServiceReference.ConcreteLesson
+                {
+                    Subject = subject,
+                    Lesson = lesson,
+                    Teacher = teacher,
+                    Room = room
             };
 
             _lessons.Add(concreteLesson);
@@ -76,7 +76,7 @@ namespace ChipClient
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            _lessons.Remove((ConcreteLesson) lbSchedule.SelectedItem);
+            _lessons.Remove(((ConcreteLesson) lbSchedule.SelectedItem).Lesson);
             UpdateSchedule();
         }
 
@@ -86,7 +86,7 @@ namespace ChipClient
 
             foreach (var item in _lessons)
             {
-                lbSchedule.Items.Add(item);
+                lbSchedule.Items.Add(new ConcreteLesson{Lesson = item});
             }
         }
     }

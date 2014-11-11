@@ -5,8 +5,8 @@ C:\Users\Kerat\Documents\Projects\Chip\Chip\bin\EntityFramework.dll
 C:\Users\Kerat\Documents\Projects\Chip\Chip\bin\EntityFramework.SqlServer.dll
 C:\Users\Kerat\Documents\Projects\Chip\Chip\bin\EntityFramework.xml
 C:\Users\Kerat\Documents\Projects\Chip\Chip\bin\EntityFramework.SqlServer.xml
-C:\Users\Kerat\Documents\Projects\Chip\Chip\obj\Debug\Chip.csprojResolveAssemblyReference.cache
 C:\Users\Kerat\Documents\Projects\Chip\Chip\obj\Debug\Chip.dll
 C:\Users\Kerat\Documents\Projects\Chip\Chip\obj\Debug\Chip.pdb
 C:\Users\Kerat\Documents\Projects\Chip\Chip\obj\Debug\Chip.Migrations.Initial.resources
 C:\Users\Kerat\Documents\Projects\Chip\Chip\obj\Debug\Chip.csproj.GenerateResource.Cache
+C:\Users\Kerat\Documents\Projects\Chip\Chip\obj\Debug\Chip.csprojResolveAssemblyReference.cache

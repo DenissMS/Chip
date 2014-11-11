@@ -28,10 +28,10 @@ namespace Chip
 
         [OperationContract]
         List<Teacher> GetTeachers();
-
         [OperationContract]
         List<Group> GetGroups();
-
+        [OperationContract]
+        void AddSchedule(int groupId, List<ConcreteLesson> lessons, DayOfWeek day);
         [OperationContract]
         void AddGroup(string name);
 
@@ -50,8 +50,26 @@ namespace Chip
         [OperationContract]
         void AddRoom(string number);
 
+
+
         [OperationContract]
-        void AddSchedule(Group group, List<ConcreteLesson> lessons, DayOfWeek day);
+        void EditGroup(int id, string name);
+
+        [OperationContract]
+        void EditTeacher(int id, string name, string position);
+
+        [OperationContract]
+        void EditSubject(int id, string name);
+
+        [OperationContract]
+        void EditLesson(int id, int number, DateTime startTime, DateTime endTime);
+
+        [OperationContract]
+        void EditRoom(int id, string number);
+
+
+
+        
 
         [OperationContract]
         void DeleteGroup(int groupId);
@@ -63,7 +81,7 @@ namespace Chip
         void DeleteSubject(int subjectId);
 
         [OperationContract]
-        void DeleteSchedule(int scheduleId);
+        void DeleteSchedule(int groupId, DayOfWeek day);
 
         [OperationContract]
         void DeleteLesson(int lessonId);

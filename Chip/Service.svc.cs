@@ -37,16 +37,40 @@ namespace Chip
 
         public List<Schedule> GetSchedules(int groupId)
         {
-            return (from b in _context.Schedules
-                where b.Id == groupId
-                select b).ToList();
+            //var query = from r in _context.Schedules
+            //            where r.GroupId == groupId
+            //            from u in r.Lessons
+            //            where u.ScheduleId == r.Id
+            //            select r;
+            //return query.ToList();
+
+            var list = new List<Schedule>();
+            foreach (var schedule in _context.Schedules.Where(s => s.GroupId == groupId))
+            {
+                var lessons = _context.ConcreteLessons
+                    .Where(lesson => lesson.ScheduleId == schedule.Id)
+                    .ToList();
+                var lessonsList = lessons.Select(lesson => new ConcreteLesson
+                {
+                    Lesson = (from b in _context.Lessons where b.Id == lesson.LessonId select b).First(),
+                    Subject = (from b in _context.Subjects where b.Id == lesson.SubjectId select b).First(),
+                    Teacher = (from b in _context.Teachers where b.Id == lesson.TeacherId select b).First(),
+                    Room = (from b in _context.Rooms where b.Id == lesson.RoomId select b).First(),
+                }).ToList();
+                schedule.Lessons = lessonsList;
+                schedule.Group = (from b in _context.Groups
+                                  where b.Id == schedule.GroupId
+                                  select b).First();
+                list.Add(schedule);
+            }
+            return list;
         }
 
         public Schedule GetSchedule(Group gr, DayOfWeek day)
         {
             return (from b in _context.Schedules
-                where b.Group == gr && b.Day == day
-                select b).FirstOrDefault();
+                    where b.Group == gr && b.Day == day
+                    select b).FirstOrDefault();
         }
 
         public List<Teacher> GetTeachers()
@@ -56,16 +80,13 @@ namespace Chip
 
         public void AddGroup(string name)
         {
-            using (var context = new Context())
-            {
-                context.Groups.Add(new Group {Id = 1, Name = name});
-                context.SaveChanges();
-            }
+            _context.Groups.Add(new Group { Name = name });
+            _context.SaveChanges();
         }
 
         public void AddTeacher(string name, string position)
         {
-            _context.Teachers.Add(new Teacher {Name = name, Position = position});
+            _context.Teachers.Add(new Teacher { Name = name, Position = position });
             _context.SaveChanges();
         }
 
@@ -110,14 +131,63 @@ namespace Chip
             _context.SaveChanges();
         }
 
-        public void AddSchedule(Group group, List<ConcreteLesson> lessons, DayOfWeek day)
+        public void EditGroup(int id, string name)
         {
-            _context.Schedules.Add(new Schedule
+            var query = (from b in _context.Groups where b.Id == id select b).First();
+            query.Name = name;
+            _context.SaveChanges();
+        }
+
+        public void EditTeacher(int id, string name, string position)
+        {
+            var query = (from b in _context.Teachers where b.Id == id select b).First();
+            query.Name = name;
+            query.Position = position;
+            _context.SaveChanges();
+        }
+
+        public void EditSubject(int id, string name)
+        {
+            var query = (from b in _context.Subjects where b.Id == id select b).First();
+            query.Name = name;
+            _context.SaveChanges();
+        }
+
+        public void EditLesson(int id, int number, DateTime startTime, DateTime endTime)
+        {
+            var query = (from b in _context.Lessons where b.Id == id select b).First();
+            query.Number = number;
+            query.LessonStart = startTime;
+            query.LessonEnd = endTime;
+            _context.SaveChanges();
+        }
+
+        public void EditRoom(int id, string number)
+        {
+            var query = (from b in _context.Rooms where b.Id == id select b).First();
+            query.Number = number;
+            _context.SaveChanges();
+        }
+
+        public void AddSchedule(int groupId, List<ConcreteLesson> lessons, DayOfWeek day)
+        {
+            var schedule = new Schedule
             {
-                Group = group,
-                Lessons = lessons,
+                GroupId = groupId,
                 Day = day,
-            });
+            };
+
+            _context.Schedules.Add(schedule);
+            _context.SaveChanges();
+
+            foreach (var lesson in lessons)
+            {
+                var l = lesson;
+                l.Schedule = schedule;
+                _context.ConcreteLessons.Add(l);
+            }
+            //_context.ConcreteLessons.AddRange(lessons);
+
             _context.SaveChanges();
         }
 
@@ -142,10 +212,16 @@ namespace Chip
             _context.SaveChanges();
         }
 
-        public void DeleteSchedule(int scheduleId)
+        public void DeleteSchedule(int groupId, DayOfWeek day)
         {
-            var schedule = from x in _context.Schedules where x.Id == scheduleId select x;
-            _context.Schedules.Remove(schedule.First());
+            var schedule = (from x in _context.Schedules
+                            where x.GroupId == groupId && x.Day == day
+                            select x).First();
+            var lessons = from x in _context.ConcreteLessons
+                          where x.ScheduleId == schedule.Id
+                          select x;
+            _context.ConcreteLessons.RemoveRange(lessons);
+            _context.Schedules.Remove(schedule);
             _context.SaveChanges();
         }
 

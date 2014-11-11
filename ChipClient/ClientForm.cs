@@ -14,6 +14,8 @@ namespace ChipClient
 {
     public partial class ClientForm : Form
     {
+        readonly CultureInfo _provider = CultureInfo.InvariantCulture;
+        const string STYLE = "hh:mm";
         private readonly ServiceClient _client = new ServiceClient();
         private DayOfWeek _selectedDay;
         private ListBox _selectedSchedule, _previousSelectedBox;
@@ -48,7 +50,7 @@ namespace ChipClient
                 {
                     foreach (var lesson in schedule.Lessons)
                     {
-                        _schedules[i].Items.Add(lesson);
+                        _schedules[i].Items.Add(new ConcreteLesson{Lesson = lesson});
                     }
                 }
                 i++;
@@ -116,6 +118,7 @@ namespace ChipClient
         private void lbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSchedule();
+            tbGroupName.Text = ((Group)lbGroups.SelectedItem).Name;
         }
 
         private void lbSchedule_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,24 +126,25 @@ namespace ChipClient
             var listBox = (ListBox) sender;
 
             var lesson = (ConcreteLesson) listBox.SelectedItem;
-
-            lLessonNumberValue.Text = lesson.Lesson.Number.ToString();
-            lLessonStartValue.Text = lesson.Lesson.LessonStart.ToShortTimeString();
-            lLessonEndValue.Text = lesson.Lesson.LessonEnd.ToShortTimeString();
-            lTeacherValue.Text = string.Format("{0} ({1})",
-                lesson.Teacher.Name, lesson.Teacher.Position);
-            lSubjectValue.Text = lesson.Subject.Name;
-            lRoomValue.Text = lesson.Room.ToString();
+            if (lesson != null)
+            {
+                lLessonNumberValue.Text = lesson.Lesson.Lesson.Number.ToString();
+                lLessonStartValue.Text = lesson.Lesson.Lesson.LessonStart.ToShortTimeString();
+                lLessonEndValue.Text = lesson.Lesson.Lesson.LessonEnd.ToShortTimeString();
+                lTeacherValue.Text = string.Format("{1} {0}", lesson.Lesson.Teacher.Name, lesson.Lesson.Teacher.Position);
+                lSubjectValue.Text = lesson.Lesson.Subject.Name;
+                lRoomValue.Text = lesson.Lesson.Room.Number;
+            }
         }
 
         private void btnAddLesson_Click(object sender, EventArgs e)
         {
-            const string style = "hh:mm";
-            var provider = CultureInfo.InvariantCulture;
             var number = Convert.ToInt32(tbLessonNumber.Text);
-            var start = DateTime.ParseExact(tbLessonStart.Text, style, provider);
-            var end = DateTime.ParseExact(tbLessonEnd.Text, style, provider);
-
+            var start = DateTime.ParseExact(tbLessonStart.Text, STYLE, _provider);
+            var end = DateTime.ParseExact(tbLessonEnd.Text, STYLE, _provider);
+            tbLessonNumber.Clear();
+            tbLessonStart.Clear();
+            tbLessonEnd.Clear();
             _client.AddLesson(number, start, end);
             UpdateSettings();
         }
@@ -154,6 +158,7 @@ namespace ChipClient
         private void btnAddSubject_Click(object sender, EventArgs e)
         {
             _client.AddSubject(tbSubjectName.Text);
+            tbSubjectName.Clear();
             UpdateSettings();
         }
 
@@ -166,6 +171,8 @@ namespace ChipClient
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
             _client.AddTeacher(tbTeacherName.Text, tbTeacherPosition.Text);
+            tbTeacherName.Clear();
+            tbTeacherPosition.Clear();
             UpdateSettings();
         }
 
@@ -178,6 +185,7 @@ namespace ChipClient
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
             _client.AddRoom(tbRoomNumber.Text);
+            tbRoomNumber.Clear();
             UpdateSettings();
         }
 
@@ -185,14 +193,6 @@ namespace ChipClient
         {
             _client.DeleteRoom(((Room) lbRooms.SelectedItem).Id);
             UpdateSettings();
-        }
-
-        private void btnAddSchedule_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnRemoveSchedule_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnAddSchedule_Click_1(object sender, EventArgs e)
@@ -226,6 +226,78 @@ namespace ChipClient
             var listBox = (ListBox) sender;
             _selectedSchedule = listBox;
             listBox.BackColor = Color.LightSkyBlue;
+        }
+
+        private void lbLessons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var lesson = (Lesson)lbLessons.SelectedItem;
+            tbLessonNumber.Text = lesson.Number.ToString(CultureInfo.InvariantCulture);
+            tbLessonStart.Text = lesson.LessonStart.ToString(STYLE);
+            tbLessonEnd.Text = lesson.LessonEnd.ToString(STYLE);
+        }
+
+        private void lbSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var subject = (Subject)lbSubjects.SelectedItem;
+            tbSubjectName.Text = subject.Name;
+        }
+
+        private void lbTeachers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var teacher = (Teacher)lbTeachers.SelectedItem;
+            tbTeacherName.Text = teacher.Name;
+            tbTeacherPosition.Text = teacher.Position;
+        }
+
+        private void lbRooms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var room = (Room)lbRooms.SelectedItem;
+            tbRoomNumber.Text = room.Number;
+        }
+
+        private void btnLessonsEdit_Click(object sender, EventArgs e)
+        {
+            var id = ((Lesson) lbLessons.SelectedItem).Id;
+            var number = Convert.ToInt32(tbLessonNumber.Text);
+            var start = DateTime.ParseExact(tbLessonStart.Text, STYLE, _provider);
+            var end = DateTime.ParseExact(tbLessonEnd.Text, STYLE, _provider);
+            _client.EditLesson(id, number, start, end);
+            UpdateSettings();
+        }
+
+        private void btnSubjectsEdit_Click(object sender, EventArgs e)
+        {
+            var id = ((Subject) lbSubjects.SelectedItem).Id;
+            _client.EditSubject(id, tbSubjectName.Text);
+            UpdateSettings();
+        }
+
+        private void btnTeachersEdit_Click(object sender, EventArgs e)
+        {
+            var id = ((Teacher) lbTeachers.SelectedItem).Id;
+            _client.EditTeacher(id, tbTeacherName.Text, tbTeacherPosition.Text);
+            UpdateSettings();
+        }
+
+        private void btnRoomsEdit_Click(object sender, EventArgs e)
+        {
+            var id = ((Room) lbRooms.SelectedItem).Id;
+            _client.EditRoom(id, tbRoomNumber.Text);
+            UpdateSettings();
+        }
+
+        private void btnGroupEdit_Click(object sender, EventArgs e)
+        {
+            var id = ((Group)lbGroups.SelectedItem).Id;
+            _client.EditGroup(id, tbGroupName.Text);
+            UpdateSettings();
+        }
+
+        private void btnRemoveSchedule_Click(object sender, EventArgs e)
+        {
+            var groupId = ((Group) lbGroups.SelectedItem).Id;
+            _client.DeleteSchedule(groupId, _selectedDay);
+            UpdateSchedule();
         }
     }
 }

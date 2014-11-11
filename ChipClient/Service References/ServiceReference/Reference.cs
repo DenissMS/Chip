@@ -15,7 +15,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Lesson", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Lesson", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Lesson : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -108,7 +108,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Room : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -169,7 +169,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Subject", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Subject", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Subject : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -230,7 +230,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Schedule", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Schedule", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Schedule : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -242,9 +242,6 @@ namespace ChipClient.ServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private ChipClient.ServiceReference.Group GroupField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> GroupIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -289,19 +286,6 @@ namespace ChipClient.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> GroupId {
-            get {
-                return this.GroupIdField;
-            }
-            set {
-                if ((this.GroupIdField.Equals(value) != true)) {
-                    this.GroupIdField = value;
-                    this.RaisePropertyChanged("GroupId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -339,7 +323,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Group : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -400,7 +384,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConcreteLesson", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcreteLesson", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class ConcreteLesson : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -417,16 +401,13 @@ namespace ChipClient.ServiceReference {
         private ChipClient.ServiceReference.Room RoomField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ChipClient.ServiceReference.Schedule ScheduleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private ChipClient.ServiceReference.Subject SubjectField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> SubjectIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private ChipClient.ServiceReference.Teacher TeacherField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> TeacherIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -478,6 +459,19 @@ namespace ChipClient.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public ChipClient.ServiceReference.Schedule Schedule {
+            get {
+                return this.ScheduleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScheduleField, value) != true)) {
+                    this.ScheduleField = value;
+                    this.RaisePropertyChanged("Schedule");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public ChipClient.ServiceReference.Subject Subject {
             get {
                 return this.SubjectField;
@@ -486,19 +480,6 @@ namespace ChipClient.ServiceReference {
                 if ((object.ReferenceEquals(this.SubjectField, value) != true)) {
                     this.SubjectField = value;
                     this.RaisePropertyChanged("Subject");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> SubjectId {
-            get {
-                return this.SubjectIdField;
-            }
-            set {
-                if ((this.SubjectIdField.Equals(value) != true)) {
-                    this.SubjectIdField = value;
-                    this.RaisePropertyChanged("SubjectId");
                 }
             }
         }
@@ -516,19 +497,6 @@ namespace ChipClient.ServiceReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> TeacherId {
-            get {
-                return this.TeacherIdField;
-            }
-            set {
-                if ((this.TeacherIdField.Equals(value) != true)) {
-                    this.TeacherIdField = value;
-                    this.RaisePropertyChanged("TeacherId");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -541,7 +509,7 @@ namespace ChipClient.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Teacher", Namespace="http://schemas.datacontract.org/2004/07/Chip")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Teacher", Namespace="http://schemas.datacontract.org/2004/07/Chip", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Teacher : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -662,6 +630,12 @@ namespace ChipClient.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetGroups", ReplyAction="http://tempuri.org/IService/GetGroupsResponse")]
         System.Threading.Tasks.Task<ChipClient.ServiceReference.Group[]> GetGroupsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddSchedule", ReplyAction="http://tempuri.org/IService/AddScheduleResponse")]
+        void AddSchedule(int groupId, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddSchedule", ReplyAction="http://tempuri.org/IService/AddScheduleResponse")]
+        System.Threading.Tasks.Task AddScheduleAsync(int groupId, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddGroup", ReplyAction="http://tempuri.org/IService/AddGroupResponse")]
         void AddGroup(string name);
         
@@ -698,11 +672,35 @@ namespace ChipClient.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddRoom", ReplyAction="http://tempuri.org/IService/AddRoomResponse")]
         System.Threading.Tasks.Task AddRoomAsync(string number);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddSchedule", ReplyAction="http://tempuri.org/IService/AddScheduleResponse")]
-        void AddSchedule(ChipClient.ServiceReference.Group group, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditGroup", ReplyAction="http://tempuri.org/IService/EditGroupResponse")]
+        void EditGroup(int id, string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddSchedule", ReplyAction="http://tempuri.org/IService/AddScheduleResponse")]
-        System.Threading.Tasks.Task AddScheduleAsync(ChipClient.ServiceReference.Group group, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditGroup", ReplyAction="http://tempuri.org/IService/EditGroupResponse")]
+        System.Threading.Tasks.Task EditGroupAsync(int id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditTeacher", ReplyAction="http://tempuri.org/IService/EditTeacherResponse")]
+        void EditTeacher(int id, string name, string position);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditTeacher", ReplyAction="http://tempuri.org/IService/EditTeacherResponse")]
+        System.Threading.Tasks.Task EditTeacherAsync(int id, string name, string position);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditSubject", ReplyAction="http://tempuri.org/IService/EditSubjectResponse")]
+        void EditSubject(int id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditSubject", ReplyAction="http://tempuri.org/IService/EditSubjectResponse")]
+        System.Threading.Tasks.Task EditSubjectAsync(int id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditLesson", ReplyAction="http://tempuri.org/IService/EditLessonResponse")]
+        void EditLesson(int id, int number, System.DateTime startTime, System.DateTime endTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditLesson", ReplyAction="http://tempuri.org/IService/EditLessonResponse")]
+        System.Threading.Tasks.Task EditLessonAsync(int id, int number, System.DateTime startTime, System.DateTime endTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditRoom", ReplyAction="http://tempuri.org/IService/EditRoomResponse")]
+        void EditRoom(int id, string number);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditRoom", ReplyAction="http://tempuri.org/IService/EditRoomResponse")]
+        System.Threading.Tasks.Task EditRoomAsync(int id, string number);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteGroup", ReplyAction="http://tempuri.org/IService/DeleteGroupResponse")]
         void DeleteGroup(int groupId);
@@ -723,10 +721,10 @@ namespace ChipClient.ServiceReference {
         System.Threading.Tasks.Task DeleteSubjectAsync(int subjectId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteSchedule", ReplyAction="http://tempuri.org/IService/DeleteScheduleResponse")]
-        void DeleteSchedule(int scheduleId);
+        void DeleteSchedule(int groupId, System.DayOfWeek day);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteSchedule", ReplyAction="http://tempuri.org/IService/DeleteScheduleResponse")]
-        System.Threading.Tasks.Task DeleteScheduleAsync(int scheduleId);
+        System.Threading.Tasks.Task DeleteScheduleAsync(int groupId, System.DayOfWeek day);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteLesson", ReplyAction="http://tempuri.org/IService/DeleteLessonResponse")]
         void DeleteLesson(int lessonId);
@@ -830,6 +828,14 @@ namespace ChipClient.ServiceReference {
             return base.Channel.GetGroupsAsync();
         }
         
+        public void AddSchedule(int groupId, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day) {
+            base.Channel.AddSchedule(groupId, lessons, day);
+        }
+        
+        public System.Threading.Tasks.Task AddScheduleAsync(int groupId, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day) {
+            return base.Channel.AddScheduleAsync(groupId, lessons, day);
+        }
+        
         public void AddGroup(string name) {
             base.Channel.AddGroup(name);
         }
@@ -878,12 +884,44 @@ namespace ChipClient.ServiceReference {
             return base.Channel.AddRoomAsync(number);
         }
         
-        public void AddSchedule(ChipClient.ServiceReference.Group group, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day) {
-            base.Channel.AddSchedule(group, lessons, day);
+        public void EditGroup(int id, string name) {
+            base.Channel.EditGroup(id, name);
         }
         
-        public System.Threading.Tasks.Task AddScheduleAsync(ChipClient.ServiceReference.Group group, ChipClient.ServiceReference.ConcreteLesson[] lessons, System.DayOfWeek day) {
-            return base.Channel.AddScheduleAsync(group, lessons, day);
+        public System.Threading.Tasks.Task EditGroupAsync(int id, string name) {
+            return base.Channel.EditGroupAsync(id, name);
+        }
+        
+        public void EditTeacher(int id, string name, string position) {
+            base.Channel.EditTeacher(id, name, position);
+        }
+        
+        public System.Threading.Tasks.Task EditTeacherAsync(int id, string name, string position) {
+            return base.Channel.EditTeacherAsync(id, name, position);
+        }
+        
+        public void EditSubject(int id, string name) {
+            base.Channel.EditSubject(id, name);
+        }
+        
+        public System.Threading.Tasks.Task EditSubjectAsync(int id, string name) {
+            return base.Channel.EditSubjectAsync(id, name);
+        }
+        
+        public void EditLesson(int id, int number, System.DateTime startTime, System.DateTime endTime) {
+            base.Channel.EditLesson(id, number, startTime, endTime);
+        }
+        
+        public System.Threading.Tasks.Task EditLessonAsync(int id, int number, System.DateTime startTime, System.DateTime endTime) {
+            return base.Channel.EditLessonAsync(id, number, startTime, endTime);
+        }
+        
+        public void EditRoom(int id, string number) {
+            base.Channel.EditRoom(id, number);
+        }
+        
+        public System.Threading.Tasks.Task EditRoomAsync(int id, string number) {
+            return base.Channel.EditRoomAsync(id, number);
         }
         
         public void DeleteGroup(int groupId) {
@@ -910,12 +948,12 @@ namespace ChipClient.ServiceReference {
             return base.Channel.DeleteSubjectAsync(subjectId);
         }
         
-        public void DeleteSchedule(int scheduleId) {
-            base.Channel.DeleteSchedule(scheduleId);
+        public void DeleteSchedule(int groupId, System.DayOfWeek day) {
+            base.Channel.DeleteSchedule(groupId, day);
         }
         
-        public System.Threading.Tasks.Task DeleteScheduleAsync(int scheduleId) {
-            return base.Channel.DeleteScheduleAsync(scheduleId);
+        public System.Threading.Tasks.Task DeleteScheduleAsync(int groupId, System.DayOfWeek day) {
+            return base.Channel.DeleteScheduleAsync(groupId, day);
         }
         
         public void DeleteLesson(int lessonId) {

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <div class="body">
+        <div id="title">
+            book of
+        </div>
+        <div id="container">
+            <div class="wrapper">
+                <div id="left-bar">
+                    <ul>
+                        <li onclick="Load('Schedules')">Schedules</li>
+                        <li onclick="Load('Groups')">Groups</li>
+                        <li onclick="Load('Teachers')">Teachers</li>
+                        <li onclick="Load('Subjects')">Subjects</li>
+                        <li onclick="Load('Lessons')">Lessons</li>
+                    </ul>
+                </div>
+                <div id="right-bar">
+                    <div class="page-title">
+                        <p>Group schedule</p>
+                    </div>
+                    <div id="content">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Designed by<br />Dennis Mikhalchenko</p>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/custom")
+        @Scripts.Render("~/bundles/less")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

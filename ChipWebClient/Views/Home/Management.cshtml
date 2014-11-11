@@ -1,0 +1,61 @@
+﻿@model dynamic
+<div id="management">
+    <div class="inner-content">
+        <select id="list" onchange='' multiple="multiple">
+            @foreach (var item in @Model)
+            {
+                <option id="@item.Id">
+                    @if (@item.GetType().GetProperty("Name") != null)
+                    {
+                        @item.Name continue;
+                    }
+                    @if (@item.GetType().GetProperty("Number") != null)
+                    {
+                        @item.Number continue;
+                    }
+                    @item.Id
+                </option>
+            }
+        </select>
+        <div class="details">
+            @foreach (var prop in @Model.GetType().GetElementType()
+                .GetProperties())
+            {
+                <p>
+                    @if (prop.Name == "Id")
+                    {
+                        continue;
+                    }
+                    @prop.Name:<br>
+                    <input id="@prop.Name" type="text">
+                </p>
+            }
+
+        </div>
+    </div>
+
+</div>
+<div id="commit-panel">
+    <button id="Add" onclick="Add(getData())">
+        Add
+    </button>
+    <button id="Edit" onclick="Edit(
+    $('#list').options[$('#list').selectedIndex].value,
+    getData())">
+        Edit
+    </button>
+    <button id="Remove" onclick="Remove(
+    $('#list').options[$('#list').selectedIndex].value)">
+        Delete
+    </button>
+</div>
+<script type="text/javascript">
+    function getData() {
+        var data = [];
+        $('.details').children()
+            .each(function () {
+                data.push(this.find('input').val());
+            });
+        return data;
+    }
+</script>
