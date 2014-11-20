@@ -13,7 +13,7 @@ namespace Chip.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201411031037480_Initial"; }
+            get { return "201411122350564_Initial"; }
         }
         
         string IMigrationMetadata.Source

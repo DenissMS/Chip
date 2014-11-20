@@ -64,6 +64,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -140,6 +143,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Schedules.cshtml" />
     <Content Include="Views\Home\Management.cshtml" />
+    <Content Include="Views\Home\GroupSelection.cshtml" />
     <None Include="Service References\ServiceReference\Service.wsdl" />
     <None Include="Service References\ServiceReference\Service.xsd">
       <SubType>Designer</SubType>
@@ -153,6 +157,7 @@
     <None Include="Service References\ServiceReference\Service3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Home\ManageSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -169,13 +174,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Chip\Chip.csproj">
       <Project>{D67C55D0-7203-4B40-98B7-4322E8EC4551}</Project>
       <Name>Chip</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

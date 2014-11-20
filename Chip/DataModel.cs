@@ -36,19 +36,19 @@ namespace Chip
         [ForeignKey("Schedule")]
         public int? ScheduleId { get; set; }
         [DataMember]
-        public Schedule Schedule { get; set; }
+        public virtual Schedule Schedule { get; set; }
         public int? LessonId { get; set; }
         [DataMember]
-        public Lesson Lesson { get; set; }
+        public virtual Lesson Lesson { get; set; }
         public int? SubjectId { get; set; }
         [DataMember]
-        public Subject Subject { get; set; }
+        public virtual Subject Subject { get; set; }
         public int? TeacherId { get; set; }
         [DataMember]
-        public Teacher Teacher { get; set; }
+        public virtual Teacher Teacher { get; set; }
         public int? RoomId { get; set; }
         [DataMember]
-        public Room Room { get; set; }
+        public virtual Room Room { get; set; }
     }
     [DataContract(IsReference = true)]
     public class Lesson : IIdentifier
@@ -111,9 +111,9 @@ namespace Chip
         [ForeignKey("Group")]
         public int? GroupId { get; set; }
         [DataMember]
-        public Group Group { get; set; }
+        public virtual Group Group { get; set; }
         [DataMember]
-        public ICollection<ConcreteLesson> Lessons { get; set; }
+        public virtual ICollection<ConcreteLesson> Lessons { get; set; }
         [DataMember]
         public DayOfWeek Day { get; set; }
     }

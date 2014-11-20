@@ -53,7 +53,7 @@
             this.btnRemoveSchedule = new System.Windows.Forms.Button();
             this.btnAddSchedule = new System.Windows.Forms.Button();
             this.lbSaturday = new System.Windows.Forms.ListBox();
-            this.Tuesday = new System.Windows.Forms.ListBox();
+            this.lbTuesday = new System.Windows.Forms.ListBox();
             this.lbFriday = new System.Windows.Forms.ListBox();
             this.lbWednesday = new System.Windows.Forms.ListBox();
             this.tpSettings = new System.Windows.Forms.TabPage();
@@ -114,23 +114,25 @@
             // lbMonday
             // 
             this.lbMonday.BackColor = System.Drawing.SystemColors.Window;
-            this.lbMonday.DisplayMember = "Subject.Name";
+            this.lbMonday.DisplayMember = "ConcreteLesson.Name";
             this.lbMonday.FormattingEnabled = true;
             this.lbMonday.Location = new System.Drawing.Point(133, 7);
             this.lbMonday.Name = "lbMonday";
             this.lbMonday.Size = new System.Drawing.Size(162, 121);
             this.lbMonday.TabIndex = 2;
+            this.lbMonday.Tag = "1";
             this.lbMonday.Click += new System.EventHandler(this.lbSchedule_Click);
             this.lbMonday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
             // 
             // lbThursday
             // 
-            this.lbThursday.DisplayMember = "ConcreteLesson.Subject";
+            this.lbThursday.DisplayMember = "ConcreteLesson.Name";
             this.lbThursday.FormattingEnabled = true;
             this.lbThursday.Location = new System.Drawing.Point(133, 134);
             this.lbThursday.Name = "lbThursday";
             this.lbThursday.Size = new System.Drawing.Size(162, 121);
             this.lbThursday.TabIndex = 5;
+            this.lbThursday.Tag = "4";
             this.lbThursday.Click += new System.EventHandler(this.lbSchedule_Click);
             this.lbThursday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
             // 
@@ -285,7 +287,7 @@
             this.tpSchedule.Controls.Add(this.gbDetails);
             this.tpSchedule.Controls.Add(this.lbMonday);
             this.tpSchedule.Controls.Add(this.lbSaturday);
-            this.tpSchedule.Controls.Add(this.Tuesday);
+            this.tpSchedule.Controls.Add(this.lbTuesday);
             this.tpSchedule.Controls.Add(this.lbFriday);
             this.tpSchedule.Controls.Add(this.lbWednesday);
             this.tpSchedule.Controls.Add(this.lbThursday);
@@ -357,45 +359,49 @@
             // 
             // lbSaturday
             // 
-            this.lbSaturday.DisplayMember = "ConcreteLesson.Subject";
+            this.lbSaturday.DisplayMember = "ConcreteLesson.Name";
             this.lbSaturday.FormattingEnabled = true;
             this.lbSaturday.Location = new System.Drawing.Point(469, 134);
             this.lbSaturday.Name = "lbSaturday";
             this.lbSaturday.Size = new System.Drawing.Size(162, 121);
             this.lbSaturday.TabIndex = 7;
+            this.lbSaturday.Tag = "6";
             this.lbSaturday.Click += new System.EventHandler(this.lbSchedule_Click);
             this.lbSaturday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
             // 
-            // Tuesday
+            // lbTuesday
             // 
-            this.Tuesday.DisplayMember = "ConcreteLesson.Subject";
-            this.Tuesday.FormattingEnabled = true;
-            this.Tuesday.Location = new System.Drawing.Point(301, 7);
-            this.Tuesday.Name = "Tuesday";
-            this.Tuesday.Size = new System.Drawing.Size(162, 121);
-            this.Tuesday.TabIndex = 3;
-            this.Tuesday.Click += new System.EventHandler(this.lbSchedule_Click);
-            this.Tuesday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
+            this.lbTuesday.DisplayMember = "ConcreteLesson.Name";
+            this.lbTuesday.FormattingEnabled = true;
+            this.lbTuesday.Location = new System.Drawing.Point(301, 7);
+            this.lbTuesday.Name = "lbTuesday";
+            this.lbTuesday.Size = new System.Drawing.Size(162, 121);
+            this.lbTuesday.TabIndex = 3;
+            this.lbTuesday.Tag = "2";
+            this.lbTuesday.Click += new System.EventHandler(this.lbSchedule_Click);
+            this.lbTuesday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
             // 
             // lbFriday
             // 
-            this.lbFriday.DisplayMember = "ConcreteLesson.Subject";
+            this.lbFriday.DisplayMember = "ConcreteLesson.Name";
             this.lbFriday.FormattingEnabled = true;
             this.lbFriday.Location = new System.Drawing.Point(301, 134);
             this.lbFriday.Name = "lbFriday";
             this.lbFriday.Size = new System.Drawing.Size(162, 121);
             this.lbFriday.TabIndex = 6;
+            this.lbFriday.Tag = "5";
             this.lbFriday.Click += new System.EventHandler(this.lbSchedule_Click);
             this.lbFriday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
             // 
             // lbWednesday
             // 
-            this.lbWednesday.DisplayMember = "ConcreteLesson.Subject";
+            this.lbWednesday.DisplayMember = "ConcreteLesson.Name";
             this.lbWednesday.FormattingEnabled = true;
             this.lbWednesday.Location = new System.Drawing.Point(469, 7);
             this.lbWednesday.Name = "lbWednesday";
             this.lbWednesday.Size = new System.Drawing.Size(162, 121);
             this.lbWednesday.TabIndex = 4;
+            this.lbWednesday.Tag = "3";
             this.lbWednesday.Click += new System.EventHandler(this.lbSchedule_Click);
             this.lbWednesday.SelectedIndexChanged += new System.EventHandler(this.lbSchedule_SelectedIndexChanged);
             // 
@@ -793,7 +799,7 @@
         private System.Windows.Forms.TabControl tcSchedule;
         private System.Windows.Forms.TabPage tpSchedule;
         private System.Windows.Forms.ListBox lbSaturday;
-        private System.Windows.Forms.ListBox Tuesday;
+        private System.Windows.Forms.ListBox lbTuesday;
         private System.Windows.Forms.ListBox lbFriday;
         private System.Windows.Forms.ListBox lbWednesday;
         private System.Windows.Forms.TabPage tpSettings;

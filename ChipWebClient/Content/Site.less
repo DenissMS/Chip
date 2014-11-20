@@ -1,6 +1,5 @@
 ﻿@semi-gray: rgba(0, 0, 0, 0.5);
-@CenturyGothic: "Century Gothic", 
-    CenturyGothic, AppleGothic, sans-serif;
+@CenturyGothic: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 @padding: 25px;
 
 body {
@@ -87,19 +86,23 @@ footer {
 }
 
 #right-bar {
-    float: left;
     width: 80%;
     height: 100%;
     .table;
 }
+
 .page-title {
     font-size: 2.5em;
     text-align: right;
     border: 2px dashed #ff6a00;
     height: 50px;
     .row;
-    p{ .cell;}
+
+    p {
+        .cell;
+    }
 }
+
 #content {
     font-size: 0.8em;
     width: 100%;
@@ -108,42 +111,55 @@ footer {
     .row;
 }
 
+.select {
+    border: none;
+    overflow: hidden;
+    float: left;
+    background: @semi-gray;
+
+    option {
+        padding: 2% 3%;
+    }
+
+        option:hover {
+            background: @semi-gray;
+            cursor: pointer;
+        }
+}
+
 .schedules {
-    .item {
-        padding: 2% 0;
+    font-size: 0.6em;
+
+    select {
         margin: 3% 0 0 3%;
-        float: left;
+        padding: 2% 0;
         width: 30%;
         height: 30%;
-        background: @semi-gray;
-
-        p {
-            /*width: 100%;*/
-            padding: 2% 3%;
-        }
-
-            p:hover {
-                background: @semi-gray;
-                cursor: pointer;
-            }
+        min-height: 160px;
+        .select;
     }
 }
 
 select, input, button {
     background-color: @semi-gray;
     color: white;
-    height: 40px;
+    height: 42px;
     font-family: @CenturyGothic;
     font-size: 2em;
 }
 
+input {
+    font-size: 1em;
+}
+
 #management {
-    padding-left: @padding;
-    height: 100%;
     .inner-content {
         float: left;
+        width: 100%;
         height: 100%;
-        select {
+        padding-left: @padding;
+
+        > select {
             width: 45%;
             height: 100%;
             float: left;
@@ -161,13 +177,39 @@ select, input, button {
             p {
                 padding-left: @padding;
                 font-size: 2em;
+
                 input {
                     width: 100%;
                 }
             }
         }
     }
+
     .cell;
+}
+
+#panel {
+    float: left;
+    width: 45%;
+
+    select {
+        margin-top: 3%;
+        width:100%;
+        clear: both;
+        .select;
+    }
+}
+
+#schedule {
+    width: 50%;
+
+    float: left;
+    select {
+        width: 100%;
+            height: 100%;
+        margin: 3% 0 0 3%;
+        .select
+    }
 }
 
 #commit-panel {
@@ -182,13 +224,15 @@ button:hover {
     background-color: #9a9a9a;
 }
 
-.table{
+.table {
     display: table;
 }
-.row{
+
+.row {
     display: table-row;
 }
-.cell{
+
+.cell {
     display: table-cell;
 }
 

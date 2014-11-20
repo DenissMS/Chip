@@ -12,10 +12,15 @@ namespace Chip
     public interface IService
     {
         [OperationContract]
+        Lesson GetLesson(int id);
+        [OperationContract]
         List<Lesson> GetLessons();
-
+        [OperationContract]
+        Room GetRoom(int id);
         [OperationContract]
         List<Room> GetRooms();
+        [OperationContract]
+        Subject GetSubject(int id);
 
         [OperationContract]
         List<Subject> GetSubjects();
@@ -24,10 +29,15 @@ namespace Chip
         List<Schedule> GetSchedules(int groupId);
 
         [OperationContract]
-        Schedule GetSchedule(Group group, DayOfWeek day);
-
+        Schedule GetSchedule(int groupId, DayOfWeek day);
+        [OperationContract]
+        Schedule GetFinalizedSchedule(Schedule schedule);
+        [OperationContract]
+        Teacher GetTeacher(int id);
         [OperationContract]
         List<Teacher> GetTeachers();
+        [OperationContract]
+        Group GetGroup(int id);
         [OperationContract]
         List<Group> GetGroups();
         [OperationContract]
@@ -45,7 +55,8 @@ namespace Chip
         void AddLesson(int number, DateTime startTime, DateTime endTime);
 
         [OperationContract]
-        void AddConcreteLesson(Lesson lesson, Subject subject, Teacher teacher, Room room);
+        void AddConcreteLesson(int scheduleId, int lessonId, int subjectId, int teacherId, int roomId);
+        //void AddConcreteLesson(Schedule schedule, Lesson lesson, Subject subject, Teacher teacher, Room room);
 
         [OperationContract]
         void AddRoom(string number);
@@ -69,7 +80,7 @@ namespace Chip
 
 
 
-        
+
 
         [OperationContract]
         void DeleteGroup(int groupId);

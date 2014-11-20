@@ -1,35 +1,32 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@using Chip
+@model ICollection<Schedule>
 <div class="schedules">
-    <div class="item">
-        <p>Database systems</p>
-        <p>Computer graphics</p>
-        <p>Programming</p>
-    </div>
-    <div class="item">
-        <p>Database systems</p>
-        <p>Computer graphics</p>
-        <p>Programming</p>
-    </div>
-    <div class="item">
-        <p>Database systems</p>
-        <p>Computer graphics</p>
-        <p>Programming</p>
-    </div>
-    <div class="item">
-        <p>Database systems</p>
-        <p>Computer graphics</p>
-        <p>Programming</p>
-    </div>
-    <div class="item">
-        <p>Database systems</p>
-        <p>Computer graphics</p>
-        <p>Programming</p>
-    </div>
-    <div class="item">
-        <p>Database systems</p>
-        <p>Computer graphics</p>
-        <p>Programming</p>
-    </div>
+    @{
+        var days = new List<DayOfWeek>
+        {
+            DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, 
+            DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday
+        };
+
+        foreach (var day in days)
+        {
+            Schedule selected = null;
+            foreach (var schedule in @Model.Where(schedule => schedule.Day == day))
+            {
+                selected = schedule;
+            }
+            <select multiple id="@day" onclick="SelectDay(this)">
+                @if (selected != null)
+                {
+                    foreach (var lesson in selected.Lessons)
+                    {
+                        <option>@lesson.Subject.Name</option>
+                    }
+                }
+            </select>
+        }
+    }
+</div>
+<div id="commit-panel">
+    <button id="Manage" onclick="Load('ManageSchedule')">Manage</button>
 </div>

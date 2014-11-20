@@ -1,0 +1,11 @@
+﻿@model ICollection<Chip.Group>
+<div id="management">
+    <div class="inner-content" style="width: 100%">
+        <select id="list" onchange='SelectGroup()' multiple="multiple">
+            @foreach (var item in @Model)
+            {
+                <option id="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+</div>

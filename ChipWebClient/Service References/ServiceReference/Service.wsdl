@@ -8,17 +8,35 @@
       <xsd:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService_GetLesson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLesson" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetLesson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLessonResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_GetLessons_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLessons" />
   </wsdl:message>
   <wsdl:message name="IService_GetLessons_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLessonsResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_GetRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_GetRooms_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRooms" />
   </wsdl:message>
   <wsdl:message name="IService_GetRooms_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRoomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubject" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetSubject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectResponse" />
   </wsdl:message>
   <wsdl:message name="IService_GetSubjects_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjects" />
@@ -38,11 +56,29 @@
   <wsdl:message name="IService_GetSchedule_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetScheduleResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_GetFinalizedSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFinalizedSchedule" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFinalizedSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFinalizedScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetTeacher_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTeacher" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetTeacher_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTeacherResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_GetTeachers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTeachers" />
   </wsdl:message>
   <wsdl:message name="IService_GetTeachers_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTeachersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroup" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupResponse" />
   </wsdl:message>
   <wsdl:message name="IService_GetGroups_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroups" />
@@ -165,13 +201,25 @@
     <wsdl:part name="parameters" element="tns:DeleteRoomResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
+    <wsdl:operation name="GetLesson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetLesson" message="tns:IService_GetLesson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetLessonResponse" message="tns:IService_GetLesson_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetLessons">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetLessons" message="tns:IService_GetLessons_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetLessonsResponse" message="tns:IService_GetLessons_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetRoom" message="tns:IService_GetRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetRoomResponse" message="tns:IService_GetRoom_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetRooms">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetRooms" message="tns:IService_GetRooms_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetRoomsResponse" message="tns:IService_GetRooms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetSubject" message="tns:IService_GetSubject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetSubjectResponse" message="tns:IService_GetSubject_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSubjects">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetSubjects" message="tns:IService_GetSubjects_InputMessage" />
@@ -185,9 +233,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetSchedule" message="tns:IService_GetSchedule_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetScheduleResponse" message="tns:IService_GetSchedule_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetFinalizedSchedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetFinalizedSchedule" message="tns:IService_GetFinalizedSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetFinalizedScheduleResponse" message="tns:IService_GetFinalizedSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacher">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetTeacher" message="tns:IService_GetTeacher_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetTeacherResponse" message="tns:IService_GetTeacher_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetTeachers">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetTeachers" message="tns:IService_GetTeachers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetTeachersResponse" message="tns:IService_GetTeachers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetGroup" message="tns:IService_GetGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetGroupResponse" message="tns:IService_GetGroup_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetGroups">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetGroups" message="tns:IService_GetGroups_InputMessage" />
@@ -272,6 +332,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLesson">
+      <soap:operation soapAction="http://tempuri.org/IService/GetLesson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetLessons">
       <soap:operation soapAction="http://tempuri.org/IService/GetLessons" style="document" />
       <wsdl:input>
@@ -281,8 +350,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <soap:operation soapAction="http://tempuri.org/IService/GetRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetRooms">
       <soap:operation soapAction="http://tempuri.org/IService/GetRooms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubject">
+      <soap:operation soapAction="http://tempuri.org/IService/GetSubject" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -317,8 +404,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFinalizedSchedule">
+      <soap:operation soapAction="http://tempuri.org/IService/GetFinalizedSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacher">
+      <soap:operation soapAction="http://tempuri.org/IService/GetTeacher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTeachers">
       <soap:operation soapAction="http://tempuri.org/IService/GetTeachers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroup">
+      <soap:operation soapAction="http://tempuri.org/IService/GetGroup" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

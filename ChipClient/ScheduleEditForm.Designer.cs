@@ -45,6 +45,7 @@
             // 
             // lbSchedule
             // 
+            this.lbSchedule.DisplayMember = "ConcreteLesson.Name";
             this.lbSchedule.FormattingEnabled = true;
             this.lbSchedule.Location = new System.Drawing.Point(12, 12);
             this.lbSchedule.Name = "lbSchedule";

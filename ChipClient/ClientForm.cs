@@ -15,45 +15,54 @@ namespace ChipClient
     public partial class ClientForm : Form
     {
         readonly CultureInfo _provider = CultureInfo.InvariantCulture;
+        private const string NA = "--";
         const string STYLE = "hh:mm";
         private readonly ServiceClient _client = new ServiceClient();
         private DayOfWeek _selectedDay;
         private ListBox _selectedSchedule, _previousSelectedBox;
-        private ListBox[] _schedules;
+        private Dictionary<DayOfWeek, ListBox> _schedules;
         public ClientForm()
         {
             InitializeComponent();
 
-            _schedules = new[]
+            _schedules = new Dictionary<DayOfWeek, ListBox>
             {
-                lbMonday,
-                lbWednesday,
-                lbThursday,
-                lbFriday,
-                lbSaturday
+                {DayOfWeek.Monday, lbMonday},
+                {DayOfWeek.Tuesday, lbTuesday},
+                {DayOfWeek.Wednesday, lbWednesday},
+                {DayOfWeek.Thursday, lbThursday},
+                {DayOfWeek.Friday, lbFriday},
+                {DayOfWeek.Saturday, lbSaturday}
             };
             UpdateGroups();
             UpdateSettings();
         }
 
+        public void ClearSchedule()
+        {
+            foreach (var schedule in _schedules)
+            {
+                schedule.Value.Items.Clear();
+            }
+        }
+
         public void UpdateSchedule()
         {
-            if(lbGroups.SelectedItem == null)return;
+            if (lbGroups.SelectedItem == null) return;
             var group = (Group)lbGroups.SelectedItem;
 
             var schedules = _client.GetSchedules(group.Id);
-            int i = 0;
-            foreach (var schedule in schedules)
+            ClearSchedule();
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
-                _schedules[i].Items.Clear();
-                if (schedule.Lessons != null)
+                var schedule = schedules.FirstOrDefault(sch => sch.Day == day);
+                if (schedule != null && schedule.Lessons != null)
                 {
                     foreach (var lesson in schedule.Lessons)
                     {
-                        _schedules[i].Items.Add(new ConcreteLesson{Lesson = lesson});
+                        _schedules[day].Items.Add(new ConcreteLesson { Lesson = lesson });
                     }
                 }
-                i++;
             }
         }
 
@@ -118,14 +127,18 @@ namespace ChipClient
         private void lbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSchedule();
-            tbGroupName.Text = ((Group)lbGroups.SelectedItem).Name;
+            var item = lbGroups.SelectedItem;
+            if (item != null)
+            {
+                tbGroupName.Text = ((Group)item).Name;
+            }
         }
 
         private void lbSchedule_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var listBox = (ListBox) sender;
-
-            var lesson = (ConcreteLesson) listBox.SelectedItem;
+            var listBox = (ListBox)sender;
+            ClearDetails();
+            var lesson = (ConcreteLesson)listBox.SelectedItem;
             if (lesson != null)
             {
                 lLessonNumberValue.Text = lesson.Lesson.Lesson.Number.ToString();
@@ -135,6 +148,16 @@ namespace ChipClient
                 lSubjectValue.Text = lesson.Lesson.Subject.Name;
                 lRoomValue.Text = lesson.Lesson.Room.Number;
             }
+        }
+
+        public void ClearDetails()
+        {
+            lLessonNumberValue.Text = NA;
+            lLessonStartValue.Text = NA;
+            lLessonEndValue.Text = NA;
+            lTeacherValue.Text = NA;
+            lSubjectValue.Text = NA;
+            lRoomValue.Text = NA;
         }
 
         private void btnAddLesson_Click(object sender, EventArgs e)
@@ -151,7 +174,7 @@ namespace ChipClient
 
         private void btnRemoveLesson_Click(object sender, EventArgs e)
         {
-            _client.DeleteLesson(((Lesson) lbLessons.SelectedItem).Id);
+            _client.DeleteLesson(((Lesson)lbLessons.SelectedItem).Id);
             UpdateSettings();
         }
 
@@ -164,7 +187,7 @@ namespace ChipClient
 
         private void btnRemoveSubject_Click(object sender, EventArgs e)
         {
-            _client.DeleteSubject(((Subject) lbSubjects.SelectedItem).Id);
+            _client.DeleteSubject(((Subject)lbSubjects.SelectedItem).Id);
             UpdateSettings();
         }
 
@@ -178,7 +201,7 @@ namespace ChipClient
 
         private void btnRemoveTeacher_Click(object sender, EventArgs e)
         {
-            _client.DeleteTeacher(((Teacher) lbTeachers.SelectedItem).Id);
+            _client.DeleteTeacher(((Teacher)lbTeachers.SelectedItem).Id);
             UpdateSettings();
         }
 
@@ -191,13 +214,13 @@ namespace ChipClient
 
         private void btnRemoveRoom_Click(object sender, EventArgs e)
         {
-            _client.DeleteRoom(((Room) lbRooms.SelectedItem).Id);
+            _client.DeleteRoom(((Room)lbRooms.SelectedItem).Id);
             UpdateSettings();
         }
 
         private void btnAddSchedule_Click_1(object sender, EventArgs e)
         {
-            var form = new ScheduleEditForm((Group) lbGroups.SelectedItem, _selectedDay, _client);
+            var form = new ScheduleEditForm((Group)lbGroups.SelectedItem, _selectedDay, _client);
             form.Closing += ScheduleForm_Closing;
             form.Show();
         }
@@ -215,16 +238,31 @@ namespace ChipClient
 
         private void btnRemoveGroup_Click(object sender, EventArgs e)
         {
-            _client.DeleteGroup(((Group) lbGroups.SelectedItem).Id);
+            _client.DeleteGroup(((Group)lbGroups.SelectedItem).Id);
             UpdateGroups();
         }
 
         private void lbSchedule_Click(object sender, EventArgs e)
-        {     
+        {
             _previousSelectedBox = _selectedSchedule;
             if (_previousSelectedBox != null) _previousSelectedBox.BackColor = Color.White;
-            var listBox = (ListBox) sender;
+            var listBox = (ListBox)sender;
             _selectedSchedule = listBox;
+            switch (Convert.ToInt32(listBox.Tag))
+            {
+                case 1: _selectedDay = DayOfWeek.Monday;
+                    break;
+                case 2: _selectedDay = DayOfWeek.Tuesday;
+                    break;
+                case 3: _selectedDay = DayOfWeek.Wednesday;
+                    break;
+                case 4: _selectedDay = DayOfWeek.Thursday;
+                    break;
+                case 5: _selectedDay = DayOfWeek.Friday;
+                    break;
+                case 6: _selectedDay = DayOfWeek.Saturday;
+                    break;
+            }
             listBox.BackColor = Color.LightSkyBlue;
         }
 
@@ -257,7 +295,7 @@ namespace ChipClient
 
         private void btnLessonsEdit_Click(object sender, EventArgs e)
         {
-            var id = ((Lesson) lbLessons.SelectedItem).Id;
+            var id = ((Lesson)lbLessons.SelectedItem).Id;
             var number = Convert.ToInt32(tbLessonNumber.Text);
             var start = DateTime.ParseExact(tbLessonStart.Text, STYLE, _provider);
             var end = DateTime.ParseExact(tbLessonEnd.Text, STYLE, _provider);
@@ -267,21 +305,21 @@ namespace ChipClient
 
         private void btnSubjectsEdit_Click(object sender, EventArgs e)
         {
-            var id = ((Subject) lbSubjects.SelectedItem).Id;
+            var id = ((Subject)lbSubjects.SelectedItem).Id;
             _client.EditSubject(id, tbSubjectName.Text);
             UpdateSettings();
         }
 
         private void btnTeachersEdit_Click(object sender, EventArgs e)
         {
-            var id = ((Teacher) lbTeachers.SelectedItem).Id;
+            var id = ((Teacher)lbTeachers.SelectedItem).Id;
             _client.EditTeacher(id, tbTeacherName.Text, tbTeacherPosition.Text);
             UpdateSettings();
         }
 
         private void btnRoomsEdit_Click(object sender, EventArgs e)
         {
-            var id = ((Room) lbRooms.SelectedItem).Id;
+            var id = ((Room)lbRooms.SelectedItem).Id;
             _client.EditRoom(id, tbRoomNumber.Text);
             UpdateSettings();
         }
@@ -295,7 +333,7 @@ namespace ChipClient
 
         private void btnRemoveSchedule_Click(object sender, EventArgs e)
         {
-            var groupId = ((Group) lbGroups.SelectedItem).Id;
+            var groupId = ((Group)lbGroups.SelectedItem).Id;
             _client.DeleteSchedule(groupId, _selectedDay);
             UpdateSchedule();
         }

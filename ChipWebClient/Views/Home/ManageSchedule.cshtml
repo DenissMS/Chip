@@ -1,0 +1,47 @@
+﻿@model dynamic
+<div id="management">
+    <div class="inner-content">
+        <div id="panel">
+            <select id="teachers">
+                @foreach (var teacher in @Model.Item1)
+                {
+                    <option id="@teacher.Id">@teacher.Name</option>
+                }
+            </select>
+            <select id="lessons">
+                @foreach (var lesson in @Model.Item2)
+                {
+                    <option id="@lesson.Id">@lesson.Number</option>
+                }
+            </select>
+            <select id="subjects">
+                @foreach (var subject in @Model.Item3)
+                {
+                    <option id="@subject.Id">@subject.Name</option>
+                }
+            </select>
+            <select id="rooms">
+                @foreach (var room in @Model.Item4)
+                {
+                    <option id="@room.Id">@room.Number</option>
+                }
+            </select>
+        </div>
+        <div id="schedule">
+            <select id="concreteLessons" multiple size="5">
+                @if (Model.Item5.Lessons != null)
+                {
+                    foreach (var lesson in @Model.Item5.Lessons)
+                    {
+                        <option id="@lesson.Id">@lesson.Subject.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+</div>
+<div id="commit-panel">
+    <button id="Add" onclick="AddLesson()">Add</button>
+    <button id="Remove" onclick="RemoveLesson()">Delete</button>
+    <button id="Remove" onclick="Load('Schedules')">Return</button>
+</div>

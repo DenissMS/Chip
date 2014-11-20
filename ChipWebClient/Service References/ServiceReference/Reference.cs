@@ -15,17 +15,35 @@ namespace ChipWebClient.ServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService")]
     public interface IService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetLesson", ReplyAction="http://tempuri.org/IService/GetLessonResponse")]
+        Chip.Lesson GetLesson(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetLesson", ReplyAction="http://tempuri.org/IService/GetLessonResponse")]
+        System.Threading.Tasks.Task<Chip.Lesson> GetLessonAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetLessons", ReplyAction="http://tempuri.org/IService/GetLessonsResponse")]
         Chip.Lesson[] GetLessons();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetLessons", ReplyAction="http://tempuri.org/IService/GetLessonsResponse")]
         System.Threading.Tasks.Task<Chip.Lesson[]> GetLessonsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetRoom", ReplyAction="http://tempuri.org/IService/GetRoomResponse")]
+        Chip.Room GetRoom(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetRoom", ReplyAction="http://tempuri.org/IService/GetRoomResponse")]
+        System.Threading.Tasks.Task<Chip.Room> GetRoomAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetRooms", ReplyAction="http://tempuri.org/IService/GetRoomsResponse")]
         Chip.Room[] GetRooms();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetRooms", ReplyAction="http://tempuri.org/IService/GetRoomsResponse")]
         System.Threading.Tasks.Task<Chip.Room[]> GetRoomsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetSubject", ReplyAction="http://tempuri.org/IService/GetSubjectResponse")]
+        Chip.Subject GetSubject(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetSubject", ReplyAction="http://tempuri.org/IService/GetSubjectResponse")]
+        System.Threading.Tasks.Task<Chip.Subject> GetSubjectAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetSubjects", ReplyAction="http://tempuri.org/IService/GetSubjectsResponse")]
         Chip.Subject[] GetSubjects();
@@ -40,16 +58,34 @@ namespace ChipWebClient.ServiceReference {
         System.Threading.Tasks.Task<Chip.Schedule[]> GetSchedulesAsync(int groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetSchedule", ReplyAction="http://tempuri.org/IService/GetScheduleResponse")]
-        Chip.Schedule GetSchedule(Chip.Group group, System.DayOfWeek day);
+        Chip.Schedule GetSchedule(int groupId, System.DayOfWeek day);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetSchedule", ReplyAction="http://tempuri.org/IService/GetScheduleResponse")]
-        System.Threading.Tasks.Task<Chip.Schedule> GetScheduleAsync(Chip.Group group, System.DayOfWeek day);
+        System.Threading.Tasks.Task<Chip.Schedule> GetScheduleAsync(int groupId, System.DayOfWeek day);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetFinalizedSchedule", ReplyAction="http://tempuri.org/IService/GetFinalizedScheduleResponse")]
+        Chip.Schedule GetFinalizedSchedule(Chip.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetFinalizedSchedule", ReplyAction="http://tempuri.org/IService/GetFinalizedScheduleResponse")]
+        System.Threading.Tasks.Task<Chip.Schedule> GetFinalizedScheduleAsync(Chip.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetTeacher", ReplyAction="http://tempuri.org/IService/GetTeacherResponse")]
+        Chip.Teacher GetTeacher(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetTeacher", ReplyAction="http://tempuri.org/IService/GetTeacherResponse")]
+        System.Threading.Tasks.Task<Chip.Teacher> GetTeacherAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetTeachers", ReplyAction="http://tempuri.org/IService/GetTeachersResponse")]
         Chip.Teacher[] GetTeachers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetTeachers", ReplyAction="http://tempuri.org/IService/GetTeachersResponse")]
         System.Threading.Tasks.Task<Chip.Teacher[]> GetTeachersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetGroup", ReplyAction="http://tempuri.org/IService/GetGroupResponse")]
+        Chip.Group GetGroup(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetGroup", ReplyAction="http://tempuri.org/IService/GetGroupResponse")]
+        System.Threading.Tasks.Task<Chip.Group> GetGroupAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetGroups", ReplyAction="http://tempuri.org/IService/GetGroupsResponse")]
         Chip.Group[] GetGroups();
@@ -88,10 +124,10 @@ namespace ChipWebClient.ServiceReference {
         System.Threading.Tasks.Task AddLessonAsync(int number, System.DateTime startTime, System.DateTime endTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddConcreteLesson", ReplyAction="http://tempuri.org/IService/AddConcreteLessonResponse")]
-        void AddConcreteLesson(Chip.Lesson lesson, Chip.Subject subject, Chip.Teacher teacher, Chip.Room room);
+        void AddConcreteLesson(int scheduleId, int lessonId, int subjectId, int teacherId, int roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddConcreteLesson", ReplyAction="http://tempuri.org/IService/AddConcreteLessonResponse")]
-        System.Threading.Tasks.Task AddConcreteLessonAsync(Chip.Lesson lesson, Chip.Subject subject, Chip.Teacher teacher, Chip.Room room);
+        System.Threading.Tasks.Task AddConcreteLessonAsync(int scheduleId, int lessonId, int subjectId, int teacherId, int roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddRoom", ReplyAction="http://tempuri.org/IService/AddRoomResponse")]
         void AddRoom(string number);
@@ -199,6 +235,14 @@ namespace ChipWebClient.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
+        public Chip.Lesson GetLesson(int id) {
+            return base.Channel.GetLesson(id);
+        }
+        
+        public System.Threading.Tasks.Task<Chip.Lesson> GetLessonAsync(int id) {
+            return base.Channel.GetLessonAsync(id);
+        }
+        
         public Chip.Lesson[] GetLessons() {
             return base.Channel.GetLessons();
         }
@@ -207,12 +251,28 @@ namespace ChipWebClient.ServiceReference {
             return base.Channel.GetLessonsAsync();
         }
         
+        public Chip.Room GetRoom(int id) {
+            return base.Channel.GetRoom(id);
+        }
+        
+        public System.Threading.Tasks.Task<Chip.Room> GetRoomAsync(int id) {
+            return base.Channel.GetRoomAsync(id);
+        }
+        
         public Chip.Room[] GetRooms() {
             return base.Channel.GetRooms();
         }
         
         public System.Threading.Tasks.Task<Chip.Room[]> GetRoomsAsync() {
             return base.Channel.GetRoomsAsync();
+        }
+        
+        public Chip.Subject GetSubject(int id) {
+            return base.Channel.GetSubject(id);
+        }
+        
+        public System.Threading.Tasks.Task<Chip.Subject> GetSubjectAsync(int id) {
+            return base.Channel.GetSubjectAsync(id);
         }
         
         public Chip.Subject[] GetSubjects() {
@@ -231,12 +291,28 @@ namespace ChipWebClient.ServiceReference {
             return base.Channel.GetSchedulesAsync(groupId);
         }
         
-        public Chip.Schedule GetSchedule(Chip.Group group, System.DayOfWeek day) {
-            return base.Channel.GetSchedule(group, day);
+        public Chip.Schedule GetSchedule(int groupId, System.DayOfWeek day) {
+            return base.Channel.GetSchedule(groupId, day);
         }
         
-        public System.Threading.Tasks.Task<Chip.Schedule> GetScheduleAsync(Chip.Group group, System.DayOfWeek day) {
-            return base.Channel.GetScheduleAsync(group, day);
+        public System.Threading.Tasks.Task<Chip.Schedule> GetScheduleAsync(int groupId, System.DayOfWeek day) {
+            return base.Channel.GetScheduleAsync(groupId, day);
+        }
+        
+        public Chip.Schedule GetFinalizedSchedule(Chip.Schedule schedule) {
+            return base.Channel.GetFinalizedSchedule(schedule);
+        }
+        
+        public System.Threading.Tasks.Task<Chip.Schedule> GetFinalizedScheduleAsync(Chip.Schedule schedule) {
+            return base.Channel.GetFinalizedScheduleAsync(schedule);
+        }
+        
+        public Chip.Teacher GetTeacher(int id) {
+            return base.Channel.GetTeacher(id);
+        }
+        
+        public System.Threading.Tasks.Task<Chip.Teacher> GetTeacherAsync(int id) {
+            return base.Channel.GetTeacherAsync(id);
         }
         
         public Chip.Teacher[] GetTeachers() {
@@ -245,6 +321,14 @@ namespace ChipWebClient.ServiceReference {
         
         public System.Threading.Tasks.Task<Chip.Teacher[]> GetTeachersAsync() {
             return base.Channel.GetTeachersAsync();
+        }
+        
+        public Chip.Group GetGroup(int id) {
+            return base.Channel.GetGroup(id);
+        }
+        
+        public System.Threading.Tasks.Task<Chip.Group> GetGroupAsync(int id) {
+            return base.Channel.GetGroupAsync(id);
         }
         
         public Chip.Group[] GetGroups() {
@@ -295,12 +379,12 @@ namespace ChipWebClient.ServiceReference {
             return base.Channel.AddLessonAsync(number, startTime, endTime);
         }
         
-        public void AddConcreteLesson(Chip.Lesson lesson, Chip.Subject subject, Chip.Teacher teacher, Chip.Room room) {
-            base.Channel.AddConcreteLesson(lesson, subject, teacher, room);
+        public void AddConcreteLesson(int scheduleId, int lessonId, int subjectId, int teacherId, int roomId) {
+            base.Channel.AddConcreteLesson(scheduleId, lessonId, subjectId, teacherId, roomId);
         }
         
-        public System.Threading.Tasks.Task AddConcreteLessonAsync(Chip.Lesson lesson, Chip.Subject subject, Chip.Teacher teacher, Chip.Room room) {
-            return base.Channel.AddConcreteLessonAsync(lesson, subject, teacher, room);
+        public System.Threading.Tasks.Task AddConcreteLessonAsync(int scheduleId, int lessonId, int subjectId, int teacherId, int roomId) {
+            return base.Channel.AddConcreteLessonAsync(scheduleId, lessonId, subjectId, teacherId, roomId);
         }
         
         public void AddRoom(string number) {

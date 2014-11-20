@@ -80,9 +80,9 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="DataModel.cs" />
-    <Compile Include="Migrations\201411031037480_Initial.cs" />
-    <Compile Include="Migrations\201411031037480_Initial.Designer.cs">
-      <DependentUpon>201411031037480_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201411122350564_Initial.cs" />
+    <Compile Include="Migrations\201411122350564_Initial.Designer.cs">
+      <DependentUpon>201411122350564_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Service.svc.cs">
@@ -107,8 +107,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411031037480_Initial.resx">
-      <DependentUpon>201411031037480_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411122350564_Initial.resx">
+      <DependentUpon>201411122350564_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

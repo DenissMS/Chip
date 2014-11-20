@@ -15,9 +15,26 @@ namespace ChipWebClient.Controllers
         {
             return View();
         }
-        public PartialViewResult Schedules()
+        public PartialViewResult Schedules(int param)
         {
-            return PartialView();
+            return PartialView(_client.GetSchedules(param));
+        }
+
+        public PartialViewResult ManageSchedule(string[] param)
+        {
+            var groupId = Convert.ToInt32(param[0]);
+            var day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), param[1]);
+            var tuple = new Tuple<Teacher[], Lesson[], Subject[], Room[], Schedule>
+            (_client.GetTeachers(), 
+            _client.GetLessons(), 
+            _client.GetSubjects(),
+            _client.GetRooms(), 
+            _client.GetSchedule(groupId,day));
+           return PartialView(tuple);
+        }
+        public PartialViewResult GroupSelection()
+        {
+            return PartialView(_client.GetGroups());
         }
         public PartialViewResult Management(string section)
         {
@@ -35,10 +52,9 @@ namespace ChipWebClient.Controllers
             }
             return PartialView(data);
         }
-
-        public void Add(string table, string[] data)
+        public void Add(string section, IList<string> data)
         {
-            switch (table)
+            switch (section)
             {
                 case Global.SCHEDULES:
                     break;
@@ -56,11 +72,19 @@ namespace ChipWebClient.Controllers
                         DateTime.ParseExact(data[1], Global.STYLE, _culture),
                         DateTime.ParseExact(data[2], Global.STYLE, _culture));
                     break;
+                case Global.MANAGE_SCHEDULE:
+                    var scheduleId = Convert.ToInt32(data[0]);
+                    var lessonId = Convert.ToInt32(data[1]);
+                    var subjectId = Convert.ToInt32(data[2]);
+                    var teacherId = Convert.ToInt32(data[3]);
+                    var roomId = Convert.ToInt32(data[4]);
+                    _client.AddConcreteLesson(scheduleId, lessonId, subjectId, teacherId, roomId);
+                    break;
             }
         }
-        public void Edit(string table, int id, string[] data)
+        public void Edit(string section, int id, IList<string> data)
         {
-            switch (table)
+            switch (section)
             {
                 case Global.SCHEDULES:
                     break;
@@ -80,9 +104,9 @@ namespace ChipWebClient.Controllers
                     break;
             }
         }
-        public void Remove(string table, int id)
+        public void Remove(string section, int id)
         {
-            switch (table)
+            switch (section)
             {
                 case Global.SCHEDULES:
                     break;
@@ -98,13 +122,33 @@ namespace ChipWebClient.Controllers
                 case Global.LESSONS:
                     _client.DeleteLesson(id);
                     break;
+                case Global.MANAGE_SCHEDULE:
+                    _client.DeleteConcreteLesson(id);
+                    break;
             }
         }
 
-        //public JsonResult GetProductDataJson(string selectedCategory = "All")
-        //{
-        //    _client.GetG
-        //    return Json(data, JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult GetDetailsJson(string section, int id)
+        {
+            IIdentifier data = null;
+            switch (section)
+            {
+                case Global.SCHEDULES:
+                    break;
+                case Global.GROUPS:
+                    data = _client.GetGroup(id);
+                    break;
+                case Global.TEACHERS:
+                    data = _client.GetTeacher(id);
+                    break;
+                case Global.SUBJECTS:
+                    data = _client.GetSubject(id);
+                    break;
+                case Global.LESSONS:
+                    data = _client.GetLesson(id);
+                    break;
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

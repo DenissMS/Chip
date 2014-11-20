@@ -2,12 +2,6 @@
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Chip" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Chip" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:64279/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
-  <xs:complexType name="ArrayOfLesson">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Lesson" nillable="true" type="tns:Lesson" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfLesson" nillable="true" type="tns:ArrayOfLesson" />
   <xs:complexType name="Lesson">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -19,12 +13,12 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Lesson" nillable="true" type="tns:Lesson" />
-  <xs:complexType name="ArrayOfRoom">
+  <xs:complexType name="ArrayOfLesson">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Room" nillable="true" type="tns:Room" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Lesson" nillable="true" type="tns:Lesson" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfRoom" nillable="true" type="tns:ArrayOfRoom" />
+  <xs:element name="ArrayOfLesson" nillable="true" type="tns:ArrayOfLesson" />
   <xs:complexType name="Room">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -34,12 +28,12 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Room" nillable="true" type="tns:Room" />
-  <xs:complexType name="ArrayOfSubject">
+  <xs:complexType name="ArrayOfRoom">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subject" nillable="true" type="tns:Subject" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Room" nillable="true" type="tns:Room" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfSubject" nillable="true" type="tns:ArrayOfSubject" />
+  <xs:element name="ArrayOfRoom" nillable="true" type="tns:ArrayOfRoom" />
   <xs:complexType name="Subject">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -49,6 +43,12 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Subject" nillable="true" type="tns:Subject" />
+  <xs:complexType name="ArrayOfSubject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subject" nillable="true" type="tns:Subject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubject" nillable="true" type="tns:ArrayOfSubject" />
   <xs:complexType name="ArrayOfSchedule">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Schedule" nillable="true" type="tns:Schedule" />

@@ -69,7 +69,6 @@ footer {
   cursor: pointer;
 }
 #right-bar {
-  float: left;
   width: 80%;
   height: 100%;
   display: table;
@@ -91,19 +90,37 @@ footer {
   border: 1px dashed #b94a48;
   display: table-row;
 }
-.schedules .item {
-  padding: 2% 0;
-  margin: 3% 0 0 3%;
+.select {
+  border: none;
+  overflow: hidden;
   float: left;
-  width: 30%;
-  height: 30%;
   background: rgba(0, 0, 0, 0.5);
 }
-.schedules .item p {
-  /*width: 100%;*/
+.select option {
   padding: 2% 3%;
 }
-.schedules .item p:hover {
+.select option:hover {
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.schedules {
+  font-size: 0.6em;
+}
+.schedules select {
+  margin: 3% 0 0 3%;
+  padding: 2% 0;
+  width: 30%;
+  height: 30%;
+  min-height: 160px;
+  border: none;
+  overflow: hidden;
+  float: left;
+  background: rgba(0, 0, 0, 0.5);
+}
+.schedules select option {
+  padding: 2% 3%;
+}
+.schedules select option:hover {
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
@@ -112,25 +129,28 @@ input,
 button {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  height: 40px;
+  height: 42px;
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   font-size: 2em;
 }
+input {
+  font-size: 1em;
+}
 #management {
-  padding-left: 25px;
-  height: 100%;
   display: table-cell;
 }
 #management .inner-content {
   float: left;
+  width: 100%;
   height: 100%;
+  padding-left: 25px;
 }
-#management .inner-content select {
+#management .inner-content > select {
   width: 45%;
   height: 100%;
   float: left;
 }
-#management .inner-content select option {
+#management .inner-content > select option {
   padding-left: 20px;
   line-height: 40px;
 }
@@ -144,6 +164,46 @@ button {
 }
 #management .inner-content .details p input {
   width: 100%;
+}
+#panel {
+  float: left;
+  width: 45%;
+}
+#panel select {
+  margin-top: 3%;
+  width: 100%;
+  clear: both;
+  border: none;
+  overflow: hidden;
+  float: left;
+  background: rgba(0, 0, 0, 0.5);
+}
+#panel select option {
+  padding: 2% 3%;
+}
+#panel select option:hover {
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+#schedule {
+  width: 50%;
+  float: left;
+}
+#schedule select {
+  width: 100%;
+  height: 100%;
+  margin: 3% 0 0 3%;
+  border: none;
+  overflow: hidden;
+  float: left;
+  background: rgba(0, 0, 0, 0.5);
+}
+#schedule select option {
+  padding: 2% 3%;
+}
+#schedule select option:hover {
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 #commit-panel {
   position: absolute;
